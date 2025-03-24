@@ -1,0 +1,6 @@
+MONGO_URI=yourMongoUrl
+GOOGLE_CLIENT_ID=GoogleClientID
+GOOGLE_CLIENT_SECRET=Secret
+SESSION_SECRET="Your key"
+FRONTEND_URL=Frontend Url
+BACKEND_URL=Backend Url
