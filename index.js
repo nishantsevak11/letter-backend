@@ -13,7 +13,7 @@ const app = express();
 
 // CORS Configuration
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || "https://letter-frontend-xi.vercel.app/", // Replace with your Vercel URL
+  origin: process.env.FRONTEND_URL || "https://letter-frontend-gold.vercel.app/", // Replace with your Vercel URL
   credentials: true, // Allow cookies/sessions
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
