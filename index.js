@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
-const cors = require('cors');
 require('dotenv').config();
 require('./config/passport');
 
@@ -11,17 +10,18 @@ const letterRoutes = require('./routes/letters');
 
 const app = express();
 
-// Configure CORS - Allow your frontend to access the backend
-app.use(cors({
-  origin: 'https://letter-frontend-xi.vercel.app/', // Adjust as needed
-  credentials: true, // Allow cookies and authentication headers
-  methods: ['GET', 'POST', 'DELETE', 'PUT', 'OPTIONS'], // Ensure all required methods are allowed
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allow necessary headers
-}));
+// Disable all CORS restrictions
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, OPTIONS'); // Allow all methods
+  res.setHeader('Access-Control-Allow-Headers', '*'); // Allow all headers
+  res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow credentials if needed
+  next();
+});
 
 // Middleware
 app.use(express.json());
-app.use(session({ secret: process.env.SESSION_SECRET, resave: false, saveUninitialized: false }));
+app.use(session({ secret: 'secret', resave: true, saveUninitialized: true })); // Temporary insecure settings
 app.use(passport.initialize());
 app.use(passport.session());
 
