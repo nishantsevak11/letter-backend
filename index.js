@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
+const cors = require("cors"); // Add this
 require("dotenv").config();
 require("./config/passport");
 
@@ -9,6 +10,15 @@ const authRoutes = require("./routes/auth");
 const letterRoutes = require("./routes/letters");
 
 const app = express();
+
+// CORS Configuration
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || "https://letter-frontend-xi.vercel.app/", // Replace with your Vercel URL
+  credentials: true, // Allow cookies/sessions
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+app.use(cors(corsOptions)); // Add this before other middleware
 
 // Middleware
 app.use(express.json());
