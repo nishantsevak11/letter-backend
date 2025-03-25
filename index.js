@@ -10,14 +10,18 @@ const letterRoutes = require('./routes/letters');
 
 const app = express();
 
-// Disable all CORS restrictions
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, DELETE, PUT, OPTIONS'); // Allow all methods
-  res.setHeader('Access-Control-Allow-Headers', '*'); // Allow all headers
-  res.setHeader('Access-Control-Allow-Credentials', 'true'); // Allow credentials if needed
-  next();
+const cors = require('cors');
+app.use(cors()); // Allow everything
+
+// Fix preflight requests
+app.options('*', (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.sendStatus(200);
 });
+
 
 // Middleware
 app.use(express.json());
