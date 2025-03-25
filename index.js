@@ -11,20 +11,12 @@ const letterRoutes = require('./routes/letters');
 
 const app = express();
 
-// Configure CORS
+// Configure CORS - Allow your frontend to access the backend
 app.use(cors({
-  origin: 'https://letter-frontend-xi.vercel.app', // Allow requests from this origin
-  credentials: true, // Allow cookies to be sent
-  methods: ['GET', 'POST', 'DELETE', 'OPTIONS'], // Allow these methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allow these headers
-}));
-
-// Handle preflight requests explicitly (optional, but ensures clarity)
-app.options('*', cors({
-  origin: 'http://https://letter-frontend-xi.vercel.app',
-  credentials: true,
-  methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  origin: 'https://letter-frontend-xi.vercel.app/', // Adjust as needed
+  credentials: true, // Allow cookies and authentication headers
+  methods: ['GET', 'POST', 'DELETE', 'PUT', 'OPTIONS'], // Ensure all required methods are allowed
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allow necessary headers
 }));
 
 // Middleware
