@@ -13,7 +13,7 @@ const app = express();
 
 // Configure CORS
 app.use(cors({
-  origin: 'http://localhost:8080', // Allow requests from this origin
+  origin: 'https://letter-frontend-xi.vercel.app', // Allow requests from this origin
   credentials: true, // Allow cookies to be sent
   methods: ['GET', 'POST', 'DELETE', 'OPTIONS'], // Allow these methods
   allowedHeaders: ['Content-Type', 'Authorization'], // Allow these headers
@@ -21,7 +21,7 @@ app.use(cors({
 
 // Handle preflight requests explicitly (optional, but ensures clarity)
 app.options('*', cors({
-  origin: 'http://localhost:8080',
+  origin: 'http://https://letter-frontend-xi.vercel.app',
   credentials: true,
   methods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
