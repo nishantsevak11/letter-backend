@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
-const cors = require("cors"); // Ensure this is installed
+const cors = require("cors");
 require("dotenv").config();
 require("./config/passport");
 
@@ -11,12 +11,12 @@ const letterRoutes = require("./routes/letters");
 
 const app = express();
 
-// CORS Configuration - Allow all origins (no security for now)
+// CORS Configuration - Specific origin instead of wildcard
 app.use(cors({
-  origin: "*", // Allow requests from any origin
+  origin: "https://letter-frontend-gxpy98s9p-nsevak61-gmailcoms-projects.vercel.app", // Your frontend URL
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true, // Still include credentials for Google Auth
+  credentials: true, // Keep this for Google Auth
 }));
 
 // Middleware
